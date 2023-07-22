@@ -17,6 +17,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
+        buildConfigField "String", "BASE_IMAGE_URL", "\"https://image.tmdb.org/t/p/w500/\""
+        buildConfigField "String", "TOKEN", "\"eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMGEzMTk3ZTVjYTA4ZWVjMzA3ODMzNTdiMTgzMjk5OCIsInN1YiI6IjVjNGE5NjJlOTI1MTQxMGUxYjU3MDEzMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Eozsx0ksKNOFQgfnK46MsSRO8A4nmqsrAc3MjQpq4CM\""
     }
 
     buildTypes {
