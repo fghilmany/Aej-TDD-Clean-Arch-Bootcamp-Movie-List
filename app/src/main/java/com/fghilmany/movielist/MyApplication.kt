@@ -3,6 +3,7 @@ package com.fghilmany.movielist
 import android.app.Application
 import com.fghilmany.movielist.core.di.networkModule
 import com.fghilmany.movielist.core.di.repositoryModule
+import com.fghilmany.movielist.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -20,7 +21,8 @@ class MyApplication: Application() {
             modules(
                 listOf(
                     networkModule,
-                    repositoryModule
+                    repositoryModule,
+                    viewModelModule
                 )
             )
         }
