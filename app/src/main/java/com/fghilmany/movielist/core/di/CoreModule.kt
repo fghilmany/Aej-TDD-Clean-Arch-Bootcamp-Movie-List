@@ -1,8 +1,8 @@
 package com.fghilmany.movielist.core.di
 
 import com.fghilmany.movielist.BuildConfig
-import com.fghilmany.movielist.core.data.IMovieRepository
 import com.fghilmany.movielist.core.data.MovieRepository
+import com.fghilmany.movielist.core.data.ImplMovieRepository
 import com.fghilmany.movielist.core.data.source.remote.RemoteDataSource
 import com.fghilmany.movielist.core.data.source.remote.network.MovieService
 import okhttp3.OkHttpClient
@@ -40,5 +40,5 @@ val networkModule = module {
 
 val repositoryModule = module {
     single { RemoteDataSource(get()) }
-    factory<IMovieRepository> { MovieRepository(get()) }
+    factory<MovieRepository> { ImplMovieRepository(get()) }
 }
