@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Movie List</string>
+    <string name="failed_to_get_list">Failed to get list</string>
+    <string name="refresh">Refresh</string>
 </resources>
