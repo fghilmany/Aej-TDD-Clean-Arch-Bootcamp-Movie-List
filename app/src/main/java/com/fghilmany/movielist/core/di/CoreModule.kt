@@ -5,6 +5,7 @@ import com.fghilmany.movielist.core.data.MovieRepository
 import com.fghilmany.movielist.core.data.ImplMovieRepository
 import com.fghilmany.movielist.core.data.source.remote.RemoteDataSource
 import com.fghilmany.movielist.core.data.source.remote.network.MovieService
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -17,11 +18,29 @@ val networkModule = module {
     single {
         val interceptor = HttpLoggingInterceptor()
         interceptor.apply { interceptor.level = HttpLoggingInterceptor.Level.BODY }
+
+        val httpClient = Interceptor { chain ->
+            val original = chain.request()
+            val method = original.method
+            val httpBuilder = original.url.newBuilder()
+            val token = BuildConfig.TOKEN
+
+            val requestBuilder = original.newBuilder()
+                .header("Accept", "application/json")
+                .header("Content-Type", "application/json")
+                .method(method, original.body)
+                .header("Authorization", "Bearer $token")
+            val request = requestBuilder.url(httpBuilder.build()).build()
+            chain.proceed(request)
+        }
+
         OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
-            .addInterceptor(interceptor).build()
+            .addInterceptor(httpClient)
+            .addInterceptor(interceptor)
+            .build()
 
     }
 
