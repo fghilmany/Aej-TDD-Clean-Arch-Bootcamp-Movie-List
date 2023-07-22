@@ -26,6 +26,37 @@ Then the app should display the watch list movies from remote
 - [ ] Allow user to manually retry mechanism when doesn’t have connectivity
 - [ ] Allow user to manually reload watch list (swipe to refresh)
 
+## Model Spec
+
+## Discover Movie
+
+#### Movie
+| Property           | Type           |
+|--------------------|----------------|
+| `page`             | `String`       |
+| `results`          | `Array Object` |
+| `total_pages`      | `Long`         |
+| `total_results`    | `Long`         |
+
+#### Results
+| Property            | Type      |
+|---------------------|-----------|
+| `adult`             | `Boolean` |
+| `backdrop_path`     | `String`  |
+| `genre_ids`         | `Array`   |
+| `id`                | `Long`    |
+| `original_language` | `String`  |
+| `original_title`    | `String`  |
+| `overview`          | `String`  |
+| `popularity`        | `Double`  |
+| `poster_path`       | `String`  |
+| `release_date`      | `String`  |
+| `title`             | `String`  |
+| `video`             | `Boolean` |
+| `vote_average`      | `Float`   |
+| `vote_count`        | `Long`    |
+
+
 ### Api Contract
 ```
 GET 
