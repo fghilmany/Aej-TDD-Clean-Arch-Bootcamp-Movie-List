@@ -1,6 +1,9 @@
 package com.fghilmany.movielist.core.di
 
 import com.fghilmany.movielist.BuildConfig
+import com.fghilmany.movielist.core.data.IMovieRepository
+import com.fghilmany.movielist.core.data.MovieRepository
+import com.fghilmany.movielist.core.data.source.remote.RemoteDataSource
 import com.fghilmany.movielist.core.data.source.remote.network.MovieService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -19,7 +22,7 @@ val networkModule = module {
             .writeTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .addInterceptor(interceptor).build()
-        
+
     }
 
     single {
@@ -33,4 +36,9 @@ val networkModule = module {
         retrofit.create(MovieService::class.java)
     }
 
+}
+
+val repositoryModule = module {
+    single { RemoteDataSource(get()) }
+    factory<IMovieRepository> { MovieRepository(get()) }
 }
