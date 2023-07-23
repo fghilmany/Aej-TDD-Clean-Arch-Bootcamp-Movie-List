@@ -20,10 +20,11 @@ class MainActivity : AppCompatActivity() {
 
         initUi()
         observeMovie()
+        viewModel.getMovie()
     }
 
     private fun observeMovie() {
-        viewModel.getMovie().observe(this){
+        viewModel.movie.observe(this){
             when(it){
                 is Resource.Loading -> {
                     with(binding){
@@ -58,9 +59,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initUi() {
-        binding.rvMovie.apply {
-            layoutManager = GridLayoutManager(this@MainActivity, 2)
-            adapter = this@MainActivity.adapter
+        with(binding){
+            rvMovie.apply {
+                layoutManager = GridLayoutManager(this@MainActivity, 2)
+                adapter = this@MainActivity.adapter
+            }
+
+            root.setOnRefreshListener {
+                viewModel.getMovie()
+                root.isRefreshing = false
+            }
         }
     }
 }
