@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.fghilmany.movielist.BuildConfig
 import com.fghilmany.movielist.core.data.source.remote.response.Results
 import com.fghilmany.movielist.databinding.ItemMovieBinding
 
@@ -42,7 +43,7 @@ class MainAdapter: RecyclerView.Adapter<MainAdapter.ViewHolder>() {
             with(binding){
                 result.apply {
                     Glide.with(itemView.context)
-                        .load(posterPath)
+                        .load(BuildConfig.BASE_IMAGE_URL + posterPath)
                         .into(ivPoster)
                     tvTitle.text = title
                 }
