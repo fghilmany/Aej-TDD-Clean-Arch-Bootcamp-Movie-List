@@ -18,13 +18,13 @@ Then the app should display the watch list movies from remote
 ```
 
 ### UX goals for the watch list movies UI experience:
-- [ ] Load watch list automatically when view is presented
-- [ ] Show a loading indicator when watch list load automatically(you can use shimmer or something else)
-- [ ] Show a empty state when watch list data is empty and add button to retry mechanism
-- [ ] Render all loaded watch list items (image, title)
-- [ ] Show a network error state when app doesn’t have connectivity
-- [ ] Allow user to manually retry mechanism when doesn’t have connectivity
-- [ ] Allow user to manually reload watch list (swipe to refresh)
+- [x] Load watch list automatically when view is presented
+- [x] Show a loading indicator when watch list load automatically(you can use shimmer or something else)
+- [x] Show a empty state when watch list data is empty and add button to retry mechanism
+- [x] Render all loaded watch list items (image, title)
+- [x] Show a network error state when app doesn’t have connectivity
+- [x] Allow user to manually retry mechanism when doesn’t have connectivity
+- [x] Allow user to manually reload watch list (swipe to refresh)
 
 ## Model Spec
 
