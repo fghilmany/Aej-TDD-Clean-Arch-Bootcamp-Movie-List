@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class MainViewModel(private val movieRepository: MovieRepository): ViewModel() {
 
-    private var _movie: MutableLiveData<Resource<List<Results>>> = MutableLiveData()
+    private var _movie: MutableLiveData<Resource<List<Results>?>> = MutableLiveData()
     val movie = _movie
     fun getMovie(){
         viewModelScope.launch {

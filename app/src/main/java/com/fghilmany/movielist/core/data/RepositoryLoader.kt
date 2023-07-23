@@ -14,7 +14,9 @@ abstract class RepositoryLoader<RequestType> {
             is ApiResponse.Success -> {
                 emit(Resource.Success(apiResponse.data))
             }
-            is ApiResponse.Empty -> {}
+            is ApiResponse.Empty -> {
+                emit(Resource.Error("Empty Data"))
+            }
             is ApiResponse.Error -> {
                 emit(Resource.Error(apiResponse.errorMessage))
                 Timber.e(apiResponse.errorMessage)
