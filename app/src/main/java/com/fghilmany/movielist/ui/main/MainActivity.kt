@@ -34,15 +34,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 is Resource.Success -> {
                     with(binding){
-                        binding.pbLoading.visibility = View.GONE
-                        if (it.data.isNullOrEmpty()){
-                            layoutEmpty.apply {
-                                root.visibility = View.VISIBLE
-                                tvMessage.text = it.message
-                            }
-                        }else{
-                            adapter.setList(it.data)
-                        }
+                        pbLoading.visibility = View.GONE
+                        layoutEmpty.root.visibility = View.GONE
+                        adapter.setList(it.data)
                     }
                 }
                 is Resource.Error -> {

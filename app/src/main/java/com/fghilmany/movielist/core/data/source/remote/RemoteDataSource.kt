@@ -15,7 +15,7 @@ class RemoteDataSource(private val movieService: MovieService) {
         return flow {
             try {
                 val response = movieService.getMovies()
-                if (response.results.isNullOrEmpty()) {
+                if (!response.results.isNullOrEmpty()) {
                     emit(ApiResponse.Success(response.results))
                 } else {
                     emit(ApiResponse.Empty)
