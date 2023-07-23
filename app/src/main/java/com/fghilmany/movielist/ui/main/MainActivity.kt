@@ -63,6 +63,10 @@ class MainActivity : AppCompatActivity() {
                 viewModel.getMovie()
                 root.isRefreshing = false
             }
+
+            layoutEmpty.btRefresh.setOnClickListener {
+                viewModel.getMovie()
+            }
         }
     }
 }
