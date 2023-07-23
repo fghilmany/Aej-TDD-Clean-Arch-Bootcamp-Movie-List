@@ -1,5 +1,6 @@
 package com.fghilmany.movielist.core.data.source.remote
 
+import com.bumptech.glide.load.HttpException
 import com.fghilmany.movielist.core.data.source.remote.network.ApiResponse
 import com.fghilmany.movielist.core.data.source.remote.network.MovieService
 import com.fghilmany.movielist.core.data.source.remote.response.MovieResponse
@@ -8,6 +9,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import java.io.IOException
+import java.net.UnknownHostException
 
 class RemoteDataSource(private val movieService: MovieService) {
     suspend fun getMovie(): Flow<ApiResponse<List<Results>>> {
@@ -20,8 +23,24 @@ class RemoteDataSource(private val movieService: MovieService) {
                     emit(ApiResponse.Empty)
                 }
             } catch (e: Exception) {
-                emit(ApiResponse.Error(e.message.toString()))
+                emit(ApiResponse.Error(e.getErrorMessage()))
             }
         }.flowOn(Dispatchers.IO)
+    }
+
+    private fun Exception.getErrorMessage(): String{
+        return when(this){
+            is HttpException -> {
+                "Data Invalid"
+            }
+
+            is IOException -> {
+                "Have no connection"
+            }
+
+            else -> {
+                this.message.toString()
+            }
+        }
     }
 }
